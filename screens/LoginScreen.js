@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  Image,
+} from "react-native";
 import config from "../config";
 
 const LoginScreen = ({ navigation }) => {
@@ -54,6 +62,10 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require("../assets/atu-catering.png")}
+        style={styles.logo}
+      />
       <Text style={styles.title}>Welcome to the Restaurant App</Text>
       <TextInput
         style={styles.input}
@@ -85,6 +97,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     backgroundColor: "#f5f5f5",
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
+    borderRadius: 30,
   },
   title: {
     fontSize: 24,
