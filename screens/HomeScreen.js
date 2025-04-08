@@ -3,11 +3,23 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const HomeScreen = ({ navigation, toggleTheme, isDarkMode }) => {
   return (
-    <View style={[styles.container, { backgroundColor: isDarkMode ? "#000" : "#f5f5f5" }]}>
-      <Text style={[styles.welcomeText, { color: isDarkMode ? "#fff" : "#000" }]}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: isDarkMode ? "#000" : "#f5f5f5" },
+      ]}
+    >
+      <Text
+        style={[styles.welcomeText, { color: isDarkMode ? "#fff" : "#000" }]}
+      >
         Welcome,
       </Text>
-      <Text style={[styles.descriptionText, { color: isDarkMode ? "#ccc" : "#000" }]}>
+      <Text
+        style={[
+          styles.descriptionText,
+          { color: isDarkMode ? "#ccc" : "#000" },
+        ]}
+      >
         This is a inventory App where you can create, read, update, and delete
         your kicthen goods.
       </Text>
@@ -35,8 +47,22 @@ const HomeScreen = ({ navigation, toggleTheme, isDarkMode }) => {
       >
         <Text style={styles.buttonText}>Track Inventory with Images</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={toggleTheme}>
-        <Text style={styles.buttonText}>
+      <TouchableOpacity
+        style={[
+          styles.toggleThemeButton,
+          {
+            backgroundColor: isDarkMode ? "#444" : "#ddd",
+            borderColor: isDarkMode ? "#fff" : "#000",
+          },
+        ]}
+        onPress={toggleTheme}
+      >
+        <Text
+          style={[
+            styles.toggleThemeButtonText,
+            { color: isDarkMode ? "#fff" : "#000" },
+          ]}
+        >
           {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
         </Text>
       </TouchableOpacity>
@@ -71,6 +97,18 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  toggleThemeButton: {
+    padding: 15,
+    borderRadius: 10,
+    marginVertical: 10,
+    width: "80%",
+    alignItems: "center",
+    borderWidth: 2,
+  },
+  toggleThemeButtonText: {
     fontSize: 16,
     fontWeight: "bold",
   },
