@@ -107,8 +107,30 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const fetchCartItems = async () => {
+    try {
+      const res = await fetch(`${config.ngrokUrl}/getCartItems`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
+        },
+      });
+      const data = await res.json();
+      if (data.success) {
+        setCart(data.cartItems.map((item) => ({ ...item, quantity: 1 }))); // Default quantity to 1
+      } else {
+        console.error("Failed to fetch cart items:", data.theError);
+      }
+    } catch (err) {
+      console.error("Error fetching cart items:", err);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, fetchCartItems }}
+    >
       {children}
     </CartContext.Provider>
   );

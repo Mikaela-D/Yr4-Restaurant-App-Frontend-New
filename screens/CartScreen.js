@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,7 +9,11 @@ import {
 import { CartContext } from "../contexts/CartContext";
 
 const CartScreen = () => {
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart, removeFromCart, fetchCartItems } = useContext(CartContext);
+
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -19,7 +23,7 @@ const CartScreen = () => {
       ) : (
         <FlatList
           data={cart}
-          keyExtractor={(item) => item.ourId.toString()}
+          keyExtractor={(item) => item.productId.toString()}
           renderItem={({ item }) => (
             <View style={styles.cartItem}>
               <Text style={styles.itemText}>{item.name}</Text>
@@ -27,7 +31,7 @@ const CartScreen = () => {
               <Text style={styles.itemText}>Quantity: {item.quantity}</Text>
               <TouchableOpacity
                 style={styles.removeButton}
-                onPress={() => removeFromCart(item.ourId)}
+                onPress={() => removeFromCart(item.productId)}
               >
                 <Text style={styles.removeButtonText}>Remove</Text>
               </TouchableOpacity>
