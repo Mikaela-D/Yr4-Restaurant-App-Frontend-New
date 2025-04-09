@@ -68,21 +68,21 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = async (productId) => {
-    const existingItem = cart.find((item) => item.ourId === productId);
+    const existingItem = cart.find((item) => item.productId === productId);
 
     if (!existingItem) return;
 
     if (existingItem.quantity > 1) {
       setCart((prevCart) =>
         prevCart.map((item) =>
-          item.ourId === productId
+          item.productId === productId
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
       );
     } else {
       setCart((prevCart) =>
-        prevCart.filter((item) => item.ourId !== productId)
+        prevCart.filter((item) => item.productId !== productId)
       );
     }
 
