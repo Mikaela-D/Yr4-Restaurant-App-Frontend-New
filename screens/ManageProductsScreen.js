@@ -89,6 +89,14 @@ const ManageProductsScreen = ({ navigation, isDarkMode }) => {
           >
             <Text style={buttonStyles.buttonText}>Details</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={[buttonStyles.smallButton, { backgroundColor: "#FFD700" }]}
+            onPress={() => console.log("Add to Cart clicked for", product.name)}
+          >
+            <Text style={[buttonStyles.buttonText, { color: "#000" }]}>
+              Add to Cart
+            </Text>
+          </TouchableOpacity>
         </View>
       ))}
       <TouchableOpacity

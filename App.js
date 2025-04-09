@@ -1,4 +1,8 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Alert } from "react-native";
 import { useEffect, useState } from "react";
@@ -81,10 +85,7 @@ export default App = () => {
           component={LoginScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Home"
-          options={{ title: "Restaurant App" }}
-        >
+        <Stack.Screen name="Home" options={{ title: "Restaurant App" }}>
           {(props) => (
             <HomeScreen
               {...props}
