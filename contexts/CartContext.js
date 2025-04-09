@@ -18,7 +18,27 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    if (product.availability <= 0) {
+      await sendPushNotification(
+        "Out of Stock",
+        `Product "${product.name}" is out of stock and cannot be added to the cart.`
+      );
+      return;
+    }
+
+    const existingItem = cart.find((item) => item.ourId === product.ourId);
+
+    if (existingItem) {
+      setCart((prevCart) =>
+        prevCart.map((item) =>
+          item.ourId === product.ourId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
+    }
 
     try {
       const res = await fetch(`${config.ngrokUrl}/addToCart`, {
@@ -31,12 +51,6 @@ export const CartProvider = ({ children }) => {
           productId: product.ourId,
           name: product.name,
           price: product.price,
-          category: product.category,
-          brand: product.brand,
-          description: product.description,
-          color: product.color,
-          weight: product.weight,
-          availability: product.availability,
         }),
       });
       const data = await res.json();
@@ -46,7 +60,7 @@ export const CartProvider = ({ children }) => {
           `Product "${product.name}" has been added to your cart.`
         );
       } else {
-        console.error("Failed to save cart item to database:", data.theError);
+        console.error("Failed to save cart item to database:", data.message);
       }
     } catch (err) {
       console.error("Error adding cart item to database:", err);

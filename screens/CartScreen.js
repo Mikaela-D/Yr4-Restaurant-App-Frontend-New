@@ -24,6 +24,7 @@ const CartScreen = () => {
             <View style={styles.cartItem}>
               <Text style={styles.itemText}>{item.name}</Text>
               <Text style={styles.itemText}>Price: ${item.price}</Text>
+              <Text style={styles.itemText}>Quantity: {item.quantity}</Text>
               <TouchableOpacity
                 style={styles.removeButton}
                 onPress={() => removeFromCart(item.ourId)}

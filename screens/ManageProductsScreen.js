@@ -92,11 +92,22 @@ const ManageProductsScreen = ({ navigation, isDarkMode }) => {
             <Text style={buttonStyles.buttonText}>Details</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[buttonStyles.smallButton, { backgroundColor: "#FFD700" }]}
-            onPress={() => addToCart(product)}
+            style={[
+              buttonStyles.smallButton,
+              {
+                backgroundColor: product.availability > 0 ? "#FFD700" : "#ccc",
+              },
+            ]}
+            onPress={() => product.availability > 0 && addToCart(product)}
+            disabled={product.availability <= 0}
           >
-            <Text style={[buttonStyles.buttonText, { color: "#000" }]}>
-              Add to Cart
+            <Text
+              style={[
+                buttonStyles.buttonText,
+                { color: product.availability > 0 ? "#000" : "#888" },
+              ]}
+            >
+              {product.availability > 0 ? "Add to Cart" : "Out of Stock"}
             </Text>
           </TouchableOpacity>
         </View>
