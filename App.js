@@ -14,6 +14,7 @@ import AddProductScreen from "./screens/AddProductScreen";
 import LoginScreen from "./screens/LoginScreen";
 import NearbyStoresScreen from "./screens/NearbyStoresScreen";
 import TrackInventoryScreen from "./screens/TrackInventoryScreen";
+import CartScreen from "./screens/CartScreen";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -101,6 +102,7 @@ export default App = () => {
         <Stack.Screen name="All Products" component={AllProductsScreen} />
         <Stack.Screen name="NearbyStores" component={NearbyStoresScreen} />
         <Stack.Screen name="TrackInventory" component={TrackInventoryScreen} />
+        <Stack.Screen name="Cart" component={CartScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

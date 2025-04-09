@@ -48,6 +48,12 @@ const HomeScreen = ({ navigation, toggleTheme, isDarkMode }) => {
         <Text style={styles.buttonText}>Track Inventory with Images</Text>
       </TouchableOpacity>
       <TouchableOpacity
+        style={[styles.cartButton]}
+        onPress={() => navigation.navigate("Cart")}
+      >
+        <Text style={styles.cartButtonText}>Go to Cart</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         style={[
           styles.toggleThemeButton,
           {
@@ -97,6 +103,19 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  cartButton: {
+    backgroundColor: "#FFD700",
+    padding: 15,
+    borderRadius: 10,
+    marginVertical: 10,
+    width: "80%",
+    alignItems: "center",
+  },
+  cartButtonText: {
+    color: "#000",
     fontSize: 16,
     fontWeight: "bold",
   },
