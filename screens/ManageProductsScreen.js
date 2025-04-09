@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   Text,
@@ -8,9 +8,11 @@ import {
 } from "react-native";
 import styles from "../styles";
 import config from "../config";
+import { CartContext } from "../contexts/CartContext";
 
 const ManageProductsScreen = ({ navigation, isDarkMode }) => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useContext(CartContext);
 
   const fetchProducts = async () => {
     try {
@@ -91,7 +93,7 @@ const ManageProductsScreen = ({ navigation, isDarkMode }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[buttonStyles.smallButton, { backgroundColor: "#FFD700" }]}
-            onPress={() => console.log("Add to Cart clicked for", product.name)}
+            onPress={() => addToCart(product)}
           >
             <Text style={[buttonStyles.buttonText, { color: "#000" }]}>
               Add to Cart

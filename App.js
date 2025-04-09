@@ -19,6 +19,7 @@ import LoginScreen from "./screens/LoginScreen";
 import NearbyStoresScreen from "./screens/NearbyStoresScreen";
 import TrackInventoryScreen from "./screens/TrackInventoryScreen";
 import CartScreen from "./screens/CartScreen";
+import { CartProvider } from "./contexts/CartContext";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -78,33 +79,35 @@ export default App = () => {
   }, []);
 
   return (
-    <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Home" options={{ title: "Restaurant App" }}>
-          {(props) => (
-            <HomeScreen
-              {...props}
-              toggleTheme={toggleTheme}
-              isDarkMode={isDarkMode}
-            />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="Fetch" component={FetchScreen} />
-        <Stack.Screen name="ViewProduct" component={ViewProductScreen} />
-        <Stack.Screen name="ManageProducts" component={ManageProductsScreen} />
-        <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
-        <Stack.Screen name="AddProduct" component={AddProductScreen} />
-        <Stack.Screen name="EditProduct" component={EditProductScreen} />
-        <Stack.Screen name="All Products" component={AllProductsScreen} />
-        <Stack.Screen name="NearbyStores" component={NearbyStoresScreen} />
-        <Stack.Screen name="TrackInventory" component={TrackInventoryScreen} />
-        <Stack.Screen name="Cart" component={CartScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <CartProvider>
+      <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Home" options={{ title: "Restaurant App" }}>
+            {(props) => (
+              <HomeScreen
+                {...props}
+                toggleTheme={toggleTheme}
+                isDarkMode={isDarkMode}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="Fetch" component={FetchScreen} />
+          <Stack.Screen name="ViewProduct" component={ViewProductScreen} />
+          <Stack.Screen name="ManageProducts" component={ManageProductsScreen} />
+          <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
+          <Stack.Screen name="AddProduct" component={AddProductScreen} />
+          <Stack.Screen name="EditProduct" component={EditProductScreen} />
+          <Stack.Screen name="All Products" component={AllProductsScreen} />
+          <Stack.Screen name="NearbyStores" component={NearbyStoresScreen} />
+          <Stack.Screen name="TrackInventory" component={TrackInventoryScreen} />
+          <Stack.Screen name="Cart" component={CartScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </CartProvider>
   );
 };
