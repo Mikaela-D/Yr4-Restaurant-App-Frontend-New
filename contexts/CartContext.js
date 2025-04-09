@@ -118,7 +118,12 @@ export const CartProvider = ({ children }) => {
       });
       const data = await res.json();
       if (data.success) {
-        setCart(data.cartItems.map((item) => ({ ...item, quantity: 1 }))); // Default quantity to 1
+        setCart(
+          data.cartItems.map((item) => ({
+            ...item,
+            productId: item.productId || item._id, // Ensure productId is set
+          }))
+        );
       } else {
         console.error("Failed to fetch cart items:", data.theError);
       }

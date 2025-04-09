@@ -23,7 +23,11 @@ const CartScreen = () => {
       ) : (
         <FlatList
           data={cart}
-          keyExtractor={(item) => item.productId.toString()}
+          keyExtractor={(item) =>
+            item.productId
+              ? item.productId.toString()
+              : Math.random().toString()
+          } // Fallback for undefined productId
           renderItem={({ item }) => (
             <View style={styles.cartItem}>
               <Text style={styles.itemText}>{item.name}</Text>
