@@ -68,7 +68,23 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = async (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.ourId !== productId));
+    const existingItem = cart.find((item) => item.ourId === productId);
+
+    if (!existingItem) return;
+
+    if (existingItem.quantity > 1) {
+      setCart((prevCart) =>
+        prevCart.map((item) =>
+          item.ourId === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      );
+    } else {
+      setCart((prevCart) =>
+        prevCart.filter((item) => item.ourId !== productId)
+      );
+    }
 
     try {
       const res = await fetch(`${config.ngrokUrl}/removeFromCart`, {
@@ -83,7 +99,7 @@ export const CartProvider = ({ children }) => {
       if (!data.success) {
         console.error(
           "Failed to remove cart item from database:",
-          data.theError
+          data.message
         );
       }
     } catch (err) {
