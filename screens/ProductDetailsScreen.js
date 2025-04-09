@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import styles from "../styles";
 import config from "../config";
@@ -6,10 +6,34 @@ import * as Notifications from "expo-notifications";
 
 const ProductDetailsScreen = ({ route, navigation }) => {
   const { product } = route.params;
+  const [productDetails, setProductDetails] = useState(product);
 
   useEffect(() => {
     navigation.setOptions({ title: "Product Details" });
-  }, []);
+
+    const unsubscribe = navigation.addListener("focus", async () => {
+      try {
+        const res = await fetch(`${config.ngrokUrl}/getSpecificProduct`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+          body: JSON.stringify({ ourId: product.ourId }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setProductDetails(data.theProduct); // Update product details
+        } else {
+          console.error("Failed to refresh product details:", data.theError);
+        }
+      } catch (err) {
+        console.error("Error refreshing product details:", err);
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   const sendPushNotification = async (title, body) => {
     await Notifications.scheduleNotificationAsync({
@@ -75,24 +99,32 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.productText}>{"Product ID: " + product.ourId}</Text>
-      <Text style={styles.productText}>{"Name: " + product.name}</Text>
-      <Text style={styles.productText}>{"Category: " + product.category}</Text>
-      <Text style={styles.productText}>{"Brand: " + product.brand}</Text>
       <Text style={styles.productText}>
-        {"Description: " + product.description}
+        {"Product ID: " + productDetails.ourId}
       </Text>
-      <Text style={styles.productText}>{"Color: " + product.color}</Text>
-      <Text style={styles.productText}>{"Weight: " + product.weight}</Text>
+      <Text style={styles.productText}>{"Name: " + productDetails.name}</Text>
       <Text style={styles.productText}>
-        {"Availability: " + product.availability}
+        {"Category: " + productDetails.category}
+      </Text>
+      <Text style={styles.productText}>{"Brand: " + productDetails.brand}</Text>
+      <Text style={styles.productText}>
+        {"Description: " + productDetails.description}
+      </Text>
+      <Text style={styles.productText}>{"Color: " + productDetails.color}</Text>
+      <Text style={styles.productText}>
+        {"Weight: " + productDetails.weight}
       </Text>
       <Text style={styles.productText}>
-        {"Product Price: " + product.price}
+        {"Availability: " + productDetails.availability}
+      </Text>
+      <Text style={styles.productText}>
+        {"Product Price: " + productDetails.price}
       </Text>
       <TouchableOpacity
         style={buttonStyles.button}
-        onPress={() => navigation.navigate("EditProduct", { product })}
+        onPress={() =>
+          navigation.navigate("EditProduct", { product: productDetails })
+        }
       >
         <Text style={buttonStyles.buttonText}>Edit</Text>
       </TouchableOpacity>

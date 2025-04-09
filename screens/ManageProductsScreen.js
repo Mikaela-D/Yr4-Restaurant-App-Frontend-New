@@ -98,7 +98,12 @@ const ManageProductsScreen = ({ navigation, isDarkMode }) => {
                 backgroundColor: product.availability > 0 ? "#FFD700" : "#ccc",
               },
             ]}
-            onPress={() => product.availability > 0 && addToCart(product)}
+            onPress={async () => {
+              if (product.availability > 0) {
+                await addToCart(product); // Add product to cart
+                fetchProducts(); // Refresh the product list to reflect updated availability
+              }
+            }}
             disabled={product.availability <= 0}
           >
             <Text
