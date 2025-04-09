@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   removeButton: {
-    backgroundColor: "#ff6b6b",
+    backgroundColor: "#FFD700",
     padding: 10,
     borderRadius: 5,
     alignItems: "center",

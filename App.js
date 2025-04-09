@@ -98,13 +98,22 @@ export default App = () => {
           </Stack.Screen>
           <Stack.Screen name="Fetch" component={FetchScreen} />
           <Stack.Screen name="ViewProduct" component={ViewProductScreen} />
-          <Stack.Screen name="ManageProducts" component={ManageProductsScreen} />
-          <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
+          <Stack.Screen
+            name="ManageProducts"
+            component={ManageProductsScreen}
+          />
+          <Stack.Screen
+            name="ProductDetails"
+            component={ProductDetailsScreen}
+          />
           <Stack.Screen name="AddProduct" component={AddProductScreen} />
           <Stack.Screen name="EditProduct" component={EditProductScreen} />
           <Stack.Screen name="All Products" component={AllProductsScreen} />
           <Stack.Screen name="NearbyStores" component={NearbyStoresScreen} />
-          <Stack.Screen name="TrackInventory" component={TrackInventoryScreen} />
+          <Stack.Screen
+            name="TrackInventory"
+            component={TrackInventoryScreen}
+          />
           <Stack.Screen name="Cart" component={CartScreen} />
         </Stack.Navigator>
       </NavigationContainer>
