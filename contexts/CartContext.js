@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import config from "../config";
 
 export const CartContext = createContext();
 
@@ -9,15 +10,22 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => [...prevCart, product]);
 
     try {
-      const res = await fetch("http://127.0.0.1:3010/addToCart", {
+      const res = await fetch(`${config.ngrokUrl}/addToCart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
         },
         body: JSON.stringify({
           productId: product.ourId,
           name: product.name,
           price: product.price,
+          category: product.category,
+          brand: product.brand,
+          description: product.description,
+          color: product.color,
+          weight: product.weight,
+          availability: product.availability,
         }),
       });
       const data = await res.json();
