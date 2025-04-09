@@ -9,7 +9,8 @@ import {
 import { CartContext } from "../contexts/CartContext";
 
 const CartScreen = () => {
-  const { cart, removeFromCart, fetchCartItems } = useContext(CartContext);
+  const { cart, removeFromCart, fetchCartItems, clearCart } =
+    useContext(CartContext);
 
   useEffect(() => {
     fetchCartItems();
@@ -17,6 +18,9 @@ const CartScreen = () => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.buyButton} onPress={clearCart}>
+        <Text style={styles.buyButtonText}>Buy Items</Text>
+      </TouchableOpacity>
       <Text style={styles.title}>Your Cart</Text>
       {cart.length === 0 ? (
         <Text style={styles.emptyText}>Your cart is empty.</Text>
@@ -86,6 +90,18 @@ const styles = StyleSheet.create({
   removeButtonText: {
     color: "#fff",
     fontSize: 14,
+    fontWeight: "bold",
+  },
+  buyButton: {
+    backgroundColor: "orange",
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  buyButtonText: {
+    color: "#fff",
+    fontSize: 16,
     fontWeight: "bold",
   },
 });

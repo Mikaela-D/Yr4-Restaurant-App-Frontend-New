@@ -132,9 +132,30 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = async () => {
+    try {
+      const res = await fetch(`${config.ngrokUrl}/clearCart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
+        },
+      });
+      const data = await res.json();
+      if (data.success) {
+        setCart([]); // Clear the cart in the frontend
+        console.log("Cart cleared successfully");
+      } else {
+        console.error("Failed to clear cart:", data.theError);
+      }
+    } catch (err) {
+      console.error("Error clearing cart:", err);
+    }
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, fetchCartItems }}
+      value={{ cart, addToCart, removeFromCart, fetchCartItems, clearCart }}
     >
       {children}
     </CartContext.Provider>
