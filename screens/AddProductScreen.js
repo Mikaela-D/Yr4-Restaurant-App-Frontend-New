@@ -136,16 +136,16 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         { backgroundColor: isDarkMode ? "#000" : "#f5f5f5" },
       ]}
     >
-      <Text
-        style={[
-          styles.title,
-          { color: isDarkMode ? "#fff" : "#000" },
-        ]}
-      >
+      <Text style={[styles.title, { color: isDarkMode ? "#fff" : "#000" }]}>
         Add New Product
       </Text>
       {error ? (
-        <Text style={[styles.errorText, { color: isDarkMode ? "#ff6b6b" : "#ff0000" }]}>
+        <Text
+          style={[
+            styles.errorText,
+            { color: isDarkMode ? "#ff6b6b" : "#ff0000" },
+          ]}
+        >
           {error}
         </Text>
       ) : null}
@@ -154,7 +154,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.name}
         onChangeText={(value) => handleChange("name", value)}
@@ -164,7 +167,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.price}
         onChangeText={(value) => handleChange("price", value)}
@@ -174,7 +180,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.category}
         onChangeText={(value) => handleChange("category", value)}
@@ -184,7 +193,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.brand}
         onChangeText={(value) => handleChange("brand", value)}
@@ -194,7 +206,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.description}
         onChangeText={(value) => handleChange("description", value)}
@@ -204,7 +219,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.color}
         onChangeText={(value) => handleChange("color", value)}
@@ -214,7 +232,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.weight}
         onChangeText={(value) => handleChange("weight", value)}
@@ -224,7 +245,10 @@ const AddProductScreen = ({ navigation, isDarkMode }) => {
         placeholderTextColor={isDarkMode ? "#ccc" : "#888"}
         style={[
           styles.input,
-          { color: isDarkMode ? "#fff" : "#000", borderColor: isDarkMode ? "#555" : "#ccc" },
+          {
+            color: isDarkMode ? "#fff" : "#000",
+            borderColor: isDarkMode ? "#555" : "#ccc",
+          },
         ]}
         value={product.availability}
         onChangeText={(value) => handleChange("availability", value)}
