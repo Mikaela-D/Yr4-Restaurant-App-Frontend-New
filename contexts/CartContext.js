@@ -29,14 +29,16 @@ export const CartProvider = ({ children }) => {
     const existingItem = cart.find((item) => item.ourId === product.ourId);
 
     if (existingItem) {
+      // Check if the item already exists in the cart
       setCart((prevCart) =>
         prevCart.map((item) =>
-          item.ourId === product.ourId
+          item.ourId === product.ourId // Check by ourId instead of productId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
       );
     } else {
+      // If the item doesn't exist in the cart, add it to the cart with quantity 1
       setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
     }
 
@@ -72,6 +74,8 @@ export const CartProvider = ({ children }) => {
 
     if (!existingItem) return;
 
+    // Check if the item exists in the cart
+    // If it exists, reduce the quantity or remove it from the cart
     if (existingItem.quantity > 1) {
       setCart((prevCart) =>
         prevCart.map((item) =>
@@ -81,6 +85,7 @@ export const CartProvider = ({ children }) => {
         )
       );
     } else {
+      // If quantity is 1, remove the item from the cart
       setCart((prevCart) =>
         prevCart.filter((item) => item.productId !== productId)
       );
@@ -120,8 +125,8 @@ export const CartProvider = ({ children }) => {
       if (data.success) {
         setCart(
           data.cartItems.map((item) => ({
-            ...item,
-            productId: item.productId || item._id, // Ensure productId is set
+            ...item, // Spread the item properties
+            productId: item.productId || item._id, // Ensure productId is set correctly
           }))
         );
       } else {

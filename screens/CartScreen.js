@@ -22,15 +22,16 @@ const CartScreen = () => {
         <Text style={styles.buyButtonText}>Buy Items</Text>
       </TouchableOpacity>
       <Text style={styles.title}>Your Cart</Text>
-      {cart.length === 0 ? (
+      {cart.length === 0 ? ( // Check if cart is empty
         <Text style={styles.emptyText}>Your cart is empty.</Text>
       ) : (
         <FlatList
           data={cart}
-          keyExtractor={(item) =>
-            item.productId
-              ? item.productId.toString()
-              : Math.random().toString()
+          keyExtractor={
+            (item) =>
+              item.productId
+                ? item.productId.toString() // Use productId if available
+                : Math.random().toString() // Fallback for undefined productId
           } // Fallback for undefined productId
           renderItem={({ item }) => (
             <View style={styles.cartItem}>
